@@ -38,8 +38,8 @@ namespace API.Controllers
             var message = new Message(){
                 Sender = sender,
                 Recipient = recipient,
-                SenderUsername = sender.Username,
-                RecipientUsername = recipient.Username,
+                SenderUsername = sender.UserName,
+                RecipientUsername = recipient.UserName,
                 Content = createMessageDto.Content
             };
 
@@ -71,10 +71,10 @@ namespace API.Controllers
         public async Task<ActionResult> DeleteMessage(int id){
             var username = User.GetUserName();
             var message = await _messageRepository.GetMessage(id);
-            if(message.Sender.Username != username && message.Recipient.Username != username) return Unauthorized();
+            if(message.Sender.UserName != username && message.Recipient.UserName != username) return Unauthorized();
 
-            if(message.Sender.Username == username) message.SenderDeleted = true;
-            if(message.Recipient.Username == username) message.RecipinetDeleted = true;
+            if(message.Sender.UserName == username) message.SenderDeleted = true;
+            if(message.Recipient.UserName == username) message.RecipinetDeleted = true;
 
             if(message.SenderDeleted && message.RecipinetDeleted) _messageRepository.DeleteMessage(message);
 

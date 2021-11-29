@@ -33,12 +33,11 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
             var user = await _userRepository.GetUserByUserNameAsync(User.GetUserName());
-            userParams.CurrentUsername = user.Username;
+            userParams.CurrentUsername = user.UserName;
             if(string.IsNullOrEmpty(userParams.Gender)){
                 userParams.Gender = userParams.Gender == "male" ? "female" : "male";
             }
@@ -89,7 +88,7 @@ namespace API.Controllers
 
             if (await _userRepository.SaveAllSync()){
                 //return _mapper.Map<PhotoDto>(photo);
-                return CreatedAtRoute("GetUser",new {username = user.Username},_mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser",new {username = user.UserName},_mapper.Map<PhotoDto>(photo));
             }
                 
 

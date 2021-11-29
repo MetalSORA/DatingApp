@@ -5,7 +5,7 @@ import {NgxGalleryAnimation, NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import { MembersService } from '../../_services/members.service';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Message } from '../../_modules/messages';
+import { Message } from '../../_models/messages';
 import { MessageService } from '../../_services/message.service';
 
 @Component({

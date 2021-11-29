@@ -4,10 +4,9 @@ import { Member } from 'src/app/_models/member';
 import { environment } from '../../../environments/environment';
 import { AccountService } from '../../_services/account.service';
 import { User } from '../../_models/user';
-import { take } from 'rxjs/operators';
+import { take} from 'rxjs/operators';
 import { MembersService } from '../../_services/members.service';
 import { Photo } from '../../_models/photo';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-photo-editor',

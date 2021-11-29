@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Message } from 'src/app/_modules/messages';
+import { Message } from 'src/app/_models/messages';
 import { MessageService } from '../../_services/message.service';
 import { NgForm } from '@angular/forms';
 
