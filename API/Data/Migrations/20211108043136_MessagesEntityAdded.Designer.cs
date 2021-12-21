@@ -91,7 +91,7 @@ namespace API.Data.Migrations
 
                     b.Property<string>("RecipientUsername")
                         .HasColumnType("TEXT");
-
+                    //cambiado   
                     b.Property<bool>("RecipinetDeleted")
                         .HasColumnType("INTEGER");
 
