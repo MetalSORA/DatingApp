@@ -73,14 +73,11 @@ namespace API.Data
                 .AsQueryable();
 
             query = messageParams.Container switch{
-                //"Inbox" => query.Where(u => u.Recipient.UserName == messageParams.Username && u.RecipinetDeleted == false),
                 "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username && u.RecipinetDeleted == false),
-                //"Outbox" => query.Where(u => u.Sender.UserName ==messageParams.Username && u.SenderDeleted == false),
                 "Outbox" => query.Where(u => u.SenderUsername ==messageParams.Username && u.SenderDeleted == false),
-                //_ => query.Where(u => u.Recipient.UserName == messageParams.Username && u.RecipinetDeleted == false && u.DateRead == null)
                 _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.RecipinetDeleted == false && u.DateRead == null)
             };
-            //var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
+
             return await PagedList<MessageDto>.CreateAsync(query,messageParams.PageNumber,messageParams.pageSize);
         }
 
