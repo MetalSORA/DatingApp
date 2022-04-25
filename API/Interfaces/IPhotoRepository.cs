@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API.DTOs;
-using API.Entities;
+namespace API.Interfaces;
 
-namespace API.Interfaces
+public interface IPhotoRepository
 {
-    public interface IPhotoRepository
-    {
-        Task<IEnumerable<PhotoForApprovalDTO>> GetUnapprovedPhotos();
-        Task<Photo> GetPhotoById(int photoId);
-        void RemovePhoto(Photo photo);
-    }
+    Task<IEnumerable<PhotoForApprovalDTO>> GetUnapprovedPhotos();
+    Task<Photo> GetPhotoById(int photoId);
+    void RemovePhoto(Photo photo);
 }
