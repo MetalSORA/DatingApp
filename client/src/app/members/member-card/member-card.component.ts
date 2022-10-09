@@ -22,4 +22,10 @@ export class MemberCardComponent implements OnInit {
       this.toastr.success('You have liked '+ member.knownAs);
     })
   }
+
+  removeLike(member:Member){
+    this.memberService.removeLike(member.id).subscribe(() => {
+      this.toastr.success('You have disliked ' + member.knownAs);
+    })
+  }
 }

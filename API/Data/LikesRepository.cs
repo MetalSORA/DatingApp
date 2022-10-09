@@ -12,7 +12,8 @@ public class LikesRepository : ILikesRepository
     {
         return await _context.Likes.FindAsync(sourceUserId,likedUserId);
     }
-
+    
+    //getting all the users who have being liked with the login user
     public async Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams)
     {
         var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();

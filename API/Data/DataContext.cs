@@ -9,6 +9,9 @@ public class DataContext : IdentityDbContext<AppUser, AppRole,int,
 
     //public DbSet<AppUser> Users { get; set; }
     public DbSet<UserLike> Likes { get; set; }
+
+    //added to block users
+    public DbSet<UserBlock> BlockedUsers { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<Group> Groups { get; set; }
     public DbSet<Connection> Connections { get; set; }
@@ -52,7 +55,14 @@ public class DataContext : IdentityDbContext<AppUser, AppRole,int,
             .HasOne(u => u.Sender)
             .WithMany(m => m.MessagesSent)
             .OnDelete(DeleteBehavior.Restrict);
-        builder.Entity<Photo>().HasQueryFilter(p => p.IsApproved);    
+        builder.Entity<Photo>().HasQueryFilter(p => p.IsApproved);
+        builder.Entity<UserBlock>()
+            .HasKey(k => new {k.SourceUserId,k.BlockedUserId});
+        builder.Entity<UserBlock>()
+            .HasOne( s => s.SourceUser)
+            .WithMany(l => l.BlockedUsers)
+            .HasForeignKey(s => s.SourceUserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.ApplyUtcDateTimeConverter();    
     }

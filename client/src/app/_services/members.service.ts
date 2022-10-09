@@ -82,7 +82,11 @@ export class MembersService {
   }
 
   addLike(username: string){
-    return this.http.post(this.baseUrl + 'likes/'+ username,{})
+    return this.http.post(this.baseUrl + 'likes/'+ username,{});
+  }
+
+  removeLike(id: number){
+    return this.http.delete(this.baseUrl + 'likes/delete-like/'+id);
   }
 
   getLikes(predicate: string, pagNumber,pageSize){

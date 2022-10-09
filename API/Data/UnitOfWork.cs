@@ -18,6 +18,8 @@ public class UnitOfWork : IUnitOfWork
 
     public IPhotoRepository PhotoRepository => new PhotoRepository(_context);
 
+    public IBlocksRepository BlocksRepository => new BlocksRepository(_context);
+
     public async Task<bool> Complete()
     {
         return await _context.SaveChangesAsync() > 0;
